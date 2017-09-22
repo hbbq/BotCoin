@@ -17,8 +17,6 @@ namespace BotCoinShared
 
             var max = numbers.Max();
             min = numbers.Min();
-            range = max - min;
-            if (range == 0) range = 1;
             min *= 1 - margin;
             max *= 1 + margin;
 
@@ -26,6 +24,7 @@ namespace BotCoinShared
             min = (decimal)Math.Log((double)min);
 
             range = max - min;
+            if (range == 0) range = 1;
 
         }
 

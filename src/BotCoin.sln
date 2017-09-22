@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotCoinEvents", "BotCoinEvents\BotCoinEvents.csproj", "{8BE44358-0FE7-4585-B76B-67C2B9282BD6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotCoinScraper", "BotCoinScraper\BotCoinScraper.csproj", "{A74BFEBC-8F6E-4B50-8F8A-02627E2A140E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotCoinShared", "BotCoinShared\BotCoinShared.csproj", "{78A8D07E-599A-4A3C-B7C0-2859D1D3884B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotCoinTeacher", "BotCoinTeacher\BotCoinTeacher.csproj", "{F86B2417-F79D-4922-AFEA-13BE4B31DE30}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,8 +29,15 @@ Global
 		{78A8D07E-599A-4A3C-B7C0-2859D1D3884B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{78A8D07E-599A-4A3C-B7C0-2859D1D3884B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{78A8D07E-599A-4A3C-B7C0-2859D1D3884B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F86B2417-F79D-4922-AFEA-13BE4B31DE30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F86B2417-F79D-4922-AFEA-13BE4B31DE30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F86B2417-F79D-4922-AFEA-13BE4B31DE30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F86B2417-F79D-4922-AFEA-13BE4B31DE30}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FE516C6A-8397-4CCE-92BF-006DB438D9DB}
 	EndGlobalSection
 EndGlobal

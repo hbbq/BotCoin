@@ -30,6 +30,11 @@ namespace BotCoinScraper
         static void Main(string[] args)
         {
 
+            var teacher = new BotCoinTeacher.Teacher();
+            teacher.Test();
+
+            if (1 == 1) return;
+
             var l = new List<decimal>();
 
             while (true)

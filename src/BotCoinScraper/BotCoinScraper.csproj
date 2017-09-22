@@ -64,6 +64,10 @@
       <Project>{78a8d07e-599a-4a3c-b7c0-2859d1d3884b}</Project>
       <Name>BotCoinShared</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BotCoinTeacher\BotCoinTeacher.csproj">
+      <Project>{f86b2417-f79d-4922-afea-13be4b31de30}</Project>
+      <Name>BotCoinTeacher</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

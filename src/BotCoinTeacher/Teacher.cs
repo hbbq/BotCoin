@@ -34,7 +34,7 @@ namespace BotCoinTeacher
             var windowSize = 10;
             var predictionSize = 2;
 
-            var series = Enumerable.Range(0, 2000).Select(e => (decimal)(e % 39 + 1)).ToList();
+            var series = Enumerable.Range(0, 6000).Select(e => (decimal)(e % 46 + 1)).ToList();
             
             var normalizer = new BotCoinShared.Normalizer(series);
 
@@ -64,10 +64,10 @@ namespace BotCoinTeacher
             }
 
             var lastBatch = 100000m;
-            var batchSize = 30;
+            var batchSize = 10;
             var absoluteMax = int.MaxValue;
 
-            var ema = 100m;
+            var ema = 200m;
             var lastEma = 200m;
 
             for (var iteration = 1; iteration <= absoluteMax; iteration++)

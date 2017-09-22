@@ -33,6 +33,8 @@ namespace BotCoinScraper
             var teacher = new BotCoinTeacher.Teacher();
             teacher.Test();
 
+            Console.ReadLine();
+
             if (1 == 1) return;
 
             var l = new List<decimal>();

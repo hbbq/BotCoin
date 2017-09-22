@@ -21,37 +21,52 @@ namespace BotCoinScraper
             public decimal high { get; set; }
             public decimal volume { get; set; }
             public string timestamp { get; set; }
+            public override string ToString()
+            {
+                return $"last_price: {last_price}, volume: {volume}";
+            }
         }
 
         static void Main(string[] args)
         {
 
+            var l = new List<decimal>();
+
             while (true)
             {
 
-                var client = new RestSharp.RestClient("https://api.bitfinex.com/v1");
-                var request = new RestSharp.RestRequest("/pubticker/btcusd", RestSharp.Method.GET);
-                var response = client.Execute<Ticker>(request);
-                var data = response.Data;
-
-                Console.WriteLine($"Price: {data.last_price}");
-
-                var T = new BotCoinEvents.Events.TickEvent
+                try
                 {
-                    mid = data.mid,
-                    bid = data.bid,
-                    ask = data.ask,
-                    last_price = data.last_price,
-                    low = data.low,
-                    high = data.high,
-                    volume = data.volume
-                };
 
-                SaveEvent(T);
+                    var client = new RestSharp.RestClient("https://api.bitfinex.com/v1");
+                    var request = new RestSharp.RestRequest("/pubticker/btcusd", RestSharp.Method.GET);
+                    var response = client.Execute<Ticker>(request);
+                    var data = response.Data;
 
+                    Console.WriteLine($"{DateTime.Now} - {data}");
+
+                    var T = new BotCoinEvents.Events.TickEvent
+                    {
+                        mid = data.mid,
+                        bid = data.bid,
+                        ask = data.ask,
+                        last_price = data.last_price,
+                        low = data.low,
+                        high = data.high,
+                        volume = data.volume
+                    };
+
+                    SaveEvent(T);
+
+                    l.Add(T.last_price);
+
+                }catch(Exception e)
+                {
+                    Console.WriteLine($"Exception: {e.Message}");
+                }
+                                
                 for (var i = 30; i > 0; i--)
                 {
-                    if(i < 30 && i% 5 == 0) Console.WriteLine(i);
                     System.Threading.Thread.Sleep(1000);
                 }
 

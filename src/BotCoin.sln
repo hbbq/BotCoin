@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotCoinEvents", "BotCoinEve
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotCoinScraper", "BotCoinScraper\BotCoinScraper.csproj", "{A74BFEBC-8F6E-4B50-8F8A-02627E2A140E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotCoinShared", "BotCoinShared\BotCoinShared.csproj", "{78A8D07E-599A-4A3C-B7C0-2859D1D3884B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A74BFEBC-8F6E-4B50-8F8A-02627E2A140E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A74BFEBC-8F6E-4B50-8F8A-02627E2A140E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A74BFEBC-8F6E-4B50-8F8A-02627E2A140E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78A8D07E-599A-4A3C-B7C0-2859D1D3884B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78A8D07E-599A-4A3C-B7C0-2859D1D3884B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78A8D07E-599A-4A3C-B7C0-2859D1D3884B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78A8D07E-599A-4A3C-B7C0-2859D1D3884B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

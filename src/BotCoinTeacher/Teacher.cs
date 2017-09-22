@@ -34,26 +34,8 @@ namespace BotCoinTeacher
             var windowSize = 10;
             var predictionSize = 2;
 
-            //var series = Enumerable.Range(0, 2000).Select(e => (decimal)(e % 39 + 1)).ToList();
-
-            var series = new List<decimal>();
-
-            using(var cn = new System.Data.SqlClient.SqlConnection("Data Source=192.168.239.9;Initial Catalog=JIFinanceServices_Prod;Integrated Security=False;User ID=juristadm;Password=Ndcv5fgz;Encrypt=False"))
-            {
-                cn.Open();
-                using(var cm = cn.CreateCommand())
-                {
-                    cm.CommandText = "select TotalAmountToPay from invoicemain where configid=2292 order by InvoiceId";
-                    using(var rdr = cm.ExecuteReader())
-                    {
-                        while (rdr.Read())
-                        {
-                            series.Add((decimal)rdr[0]);
-                        }
-                    }
-                }
-            }
-
+            var series = Enumerable.Range(0, 2000).Select(e => (decimal)(e % 39 + 1)).ToList();
+            
             var normalizer = new BotCoinShared.Normalizer(series);
 
             var normalizedSeries = normalizer.Normalize(series).ToList();

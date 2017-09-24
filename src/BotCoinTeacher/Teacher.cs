@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Accord.Neuro;
 using Accord.Statistics;
+using EventStore.ClientAPI;
+using System.Net;
 
 namespace BotCoinTeacher
 {
@@ -35,7 +37,38 @@ namespace BotCoinTeacher
             var predictionSize = 2;
 
             var series = Enumerable.Range(0, 6000).Select(e => (decimal)(e % 46 + 1)).ToList();
-            
+
+            var settings = ConnectionSettings.Create();
+            settings.SetHeartbeatTimeout(TimeSpan.FromSeconds(60));
+
+            using (var connection = EventStoreConnection.Create(settings, new IPEndPoint(IPAddress.Loopback, 1113)))
+            {
+
+                connection.ConnectAsync().Wait();
+
+                var x = connection.ReadStreamEventsBackwardAsync("BotCoin-001001", StreamPosition.End, 4096, false).Result;
+
+                var events = x.Events.Where(e => e.Event.EventType == typeof(BotCoinEvents.Events.TickEvent).Name).Reverse();
+
+                series = 
+                    events.Select(
+                        e => 
+                            Newtonsoft.Json.JsonConvert.DeserializeObject<BotCoinEvents.Events.TickEvent>( 
+                                Encoding.UTF8.GetString(e.Event.Data)
+                            ).last_price
+                ).ToList();
+
+            }
+
+            var orgSeries = series.ToList();
+
+            series.Clear();
+
+            for(var i = 1; i < orgSeries.Count; i++)
+            {
+                series.Add(orgSeries[i] / orgSeries[i - 1]);
+            }
+
             var normalizer = new BotCoinShared.Normalizer(series);
 
             var normalizedSeries = normalizer.Normalize(series).ToList();
@@ -88,17 +121,26 @@ namespace BotCoinTeacher
                     var inputs = input[pos];
                     var expected = series.Skip(pos + windowSize).Take(predictionSize).ToArray();
 
+                    //var expected = orgSeries.Skip(pos + windowSize + 1).Take(predictionSize).ToArray();
+
                     var calculatedRaw = network.Compute(inputs);
 
                     var calculated = normalizer.Denormalize(calculatedRaw.Select(e => (decimal)e)).ToArray();
+
+                    //var cv = orgSeries[pos + windowSize];
+                    //for(var i = 0; i < predictionSize; i++)
+                    //{
+                    //    cv *= calculated[i];
+                    //    calculated[i] = cv;
+                    //}
 
                     var error = Enumerable.Range(0, predictionSize).Select(e => Math.Abs(1 - (calculated[e] / expected[e]))).Average()*100;
 
                     if(pos >= sampleCount - 1)
                     {
                         predictionError += error;
-                        predicted = string.Join(",", calculated.Select(e => e.ToString("#0")));
-                        actual = string.Join(",", expected.Select(e => e.ToString("#0"))); ;
+                        predicted = string.Join(",", calculated.Select(e => e.ToString("#0.000")));
+                        actual = string.Join(",", expected.Select(e => e.ToString("#0.000"))); ;
                     }
                     else
                     {

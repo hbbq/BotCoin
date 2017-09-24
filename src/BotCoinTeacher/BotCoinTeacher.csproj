@@ -53,6 +53,12 @@
     <Reference Include="Accord.Statistics, Version=3.7.0.0, Culture=neutral, PublicKeyToken=fa1a88e29555ccf7, processorArchitecture=MSIL">
       <HintPath>..\packages\Accord.Statistics.3.7.0\lib\net46\Accord.Statistics.dll</HintPath>
     </Reference>
+    <Reference Include="EventStore.ClientAPI, Version=4.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EventStore.Client.4.0.2\lib\net40\EventStore.ClientAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -71,6 +77,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BotCoinEvents\BotCoinEvents.csproj">
+      <Project>{8be44358-0fe7-4585-b76b-67c2b9282bd6}</Project>
+      <Name>BotCoinEvents</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BotCoinShared\BotCoinShared.csproj">
       <Project>{78a8d07e-599a-4a3c-b7c0-2859d1d3884b}</Project>
       <Name>BotCoinShared</Name>
